@@ -5,6 +5,7 @@ import AddNewRecipe from "./pages/AddNewRecipe/AddNewRecipe";
 import EditRecipe from "./pages/EditRecipe/EditRecipe";
 import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
 import RecipeList from "./pages/RecipeList/RecipeList";
+import "./index.css";
 
 const router = createBrowserRouter([
   {

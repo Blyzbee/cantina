@@ -1,0 +1,6 @@
+.listContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
