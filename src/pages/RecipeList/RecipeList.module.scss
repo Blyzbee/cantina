@@ -1,8 +1,10 @@
+@import "../../styles/colors";
+
 .listContainer {
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 20px;
-  padding: 0 20px;
 
   > div:first-child {
     position: relative;
@@ -11,6 +13,7 @@
     > img {
       background-color: rgba(255, 255, 255, 0.7);
       border-radius: 25px;
+      border: 2px solid $click-color;
       position: absolute;
       width: 100px;
       top: 50%;

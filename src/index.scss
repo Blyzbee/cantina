@@ -1,3 +1,5 @@
+@import "./styles/colors";
+
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -14,12 +16,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 } */
-$primary-color: blue;
-$click-color: rgb(146, 88, 255);
-$light-color: white;
-$grey-color: grey;
-$dark-color: black;
-$error-color: red;
+
+// DEBUG
+// * {
+//   background-color: rgba(9, 255, 0, 0.05);
+// }
 
 a {
   color: $click-color;
@@ -31,6 +32,12 @@ a:hover {
 
 body {
   margin: 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {

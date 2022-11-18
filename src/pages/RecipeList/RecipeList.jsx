@@ -31,27 +31,29 @@ const RecipeList = () => {
   };
 
   return (
-    <div className="main-container">
+    <>
       <Header />
-      <h2>Découvrez toutes nos recettes !</h2>
-      <div>
-        <h3>Filtres</h3>
-      </div>
-      <div className={style.listContainer}>
-        <div className="card" onClick={() => navigate("/ajouter-recette")}>
-          <h3>Ajouter une recette</h3>
-          <img src={addIcon} />
+      <div className="main-container">
+        <h2>Découvrez toutes nos recettes !</h2>
+        <div>
+          <h3>Filtres</h3>
         </div>
-        {recipesData?.map((recipe) => (
-          <RecipeCard data={recipe} key={recipe.id} />
-        ))}
-        {!recipesData && !loading && (
-          <div className="card">
-            <h3>Aucune recettes trouvées</h3>
+        <div className={style.listContainer}>
+          <div className="card" onClick={() => navigate("/ajouter-recette")}>
+            <h3>Ajouter une recette</h3>
+            <img src={addIcon} />
           </div>
-        )}
+          {recipesData?.map((recipe) => (
+            <RecipeCard data={recipe} key={recipe.id} />
+          ))}
+          {!recipesData && !loading && (
+            <div className="card">
+              <h3>Aucune recettes trouvées</h3>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
