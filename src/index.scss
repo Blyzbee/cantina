@@ -1,0 +1,124 @@
+/* :root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+} */
+$primary-color: blue;
+$click-color: rgb(146, 88, 255);
+$light-color: white;
+$grey-color: grey;
+$dark-color: black;
+$error-color: red;
+
+a {
+  color: $click-color;
+  text-decoration: inherit;
+}
+a:hover {
+  color: $click-color;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.button {
+  color: $click-color;
+  background-color: transparent;
+  border-radius: 12px;
+  border: 2px solid $click-color;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 20px auto 0 auto;
+
+  &:hover {
+    background-color: $click-color;
+    color: $light-color;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input,
+select,
+textarea {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid $click-color;
+  font-size: 0.9em;
+}
+
+.error {
+  color: $error-color;
+}
+
+.error-border {
+  border: 1px $error-color solid;
+}
+
+.card {
+  height: 400px;
+  background-color: $grey-color;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 25px;
+
+  h3 {
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    padding: 15px 30px;
+    border-radius: 0 0 25px 25px;
+  }
+
+  > div {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */

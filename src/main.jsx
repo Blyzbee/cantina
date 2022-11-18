@@ -5,7 +5,7 @@ import AddNewRecipe from "./pages/AddNewRecipe/AddNewRecipe";
 import EditRecipe from "./pages/EditRecipe/EditRecipe";
 import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
 import RecipeList from "./pages/RecipeList/RecipeList";
-import "./index.css";
+import "./index.scss";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <EditRecipe />,
   },
   {
-    path: "/ajouter-recette/:id",
+    path: "/ajouter-recette",
     element: <AddNewRecipe />,
   },
 ]);

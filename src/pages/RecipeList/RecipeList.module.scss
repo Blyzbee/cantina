@@ -3,4 +3,19 @@
   grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 20px;
   padding: 0 20px;
+
+  > div:first-child {
+    position: relative;
+    cursor: pointer;
+
+    > img {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 25px;
+      position: absolute;
+      width: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }

@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 const RecipeCard = ({ data }) => {
   return (
     <div
-      className={`card ${style.recipeCard}`}
+      className="card"
       style={{
         backgroundImage: data.photo
           ? `url(${data.photo})`
-          : defaultRecipePicture,
+          : `url(${defaultRecipePicture})`,
       }}
     >
       <h3>{data.titre}</h3>
@@ -28,7 +28,9 @@ const RecipeCard = ({ data }) => {
           <strong>Temps de préparation: </strong>
           <span>{durationParsing(data.tempsPreparation)}</span>
         </div>
-        <Link to={`recette/${data.id}`}>Détails</Link>
+        <Link to={`recette/${data.id}`} className="button">
+          Détails
+        </Link>
       </div>
     </div>
   );
