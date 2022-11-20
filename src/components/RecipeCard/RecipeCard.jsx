@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const RecipeCard = ({ data }) => {
   return (
     <div
-      className="card"
+      className={style.card}
       style={{
         backgroundImage: data.photo
           ? `url(${data.photo})`
@@ -17,7 +17,10 @@ const RecipeCard = ({ data }) => {
       <div>
         <div>
           <span>
-            Recette pour {data.personnes} personne{data.personnes > 1 && "s"}
+            Recette pour{" "}
+            <strong>
+              {data.personnes} personne{data.personnes > 1 && "s"}
+            </strong>
           </span>
         </div>
         <div>

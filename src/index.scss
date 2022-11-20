@@ -1,21 +1,5 @@
 @import "./styles/colors";
-
-/* :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-} */
+@import "./styles/fonts";
 
 // DEBUG
 // * {
@@ -32,6 +16,7 @@ a:hover {
 
 body {
   margin: 0;
+  padding-bottom: 100px;
 }
 
 .main-container {
@@ -41,26 +26,34 @@ body {
 }
 
 h1 {
+  font-family: "Starjedi", sans-serif;
+  color: $click-color;
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: bold;
   margin: 0;
 }
 
+h2 {
+  color: $primary-color;
+  font-weight: bold;
+}
+
 .button {
-  color: $click-color;
-  background-color: transparent;
-  border-radius: 12px;
-  border: 2px solid $click-color;
-  padding: 0.6em 1.2em;
+  color: $dark-color;
+  background-color: $click-color;
+  border-radius: 5px;
+  border: 1px solid $dark-color;
+  padding: 10px 30px;
   font-size: 1em;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  margin: 20px auto 0 auto;
+  margin: auto;
 
   &:hover {
-    background-color: $click-color;
-    color: $light-color;
+    background-color: $dark-color;
+    color: $click-color;
   }
 
   &:focus,
@@ -71,49 +64,51 @@ h1 {
 
 label {
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 input,
 select,
 textarea {
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid $click-color;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid $click-color;
   font-size: 0.9em;
+}
+
+select {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 200px;
+}
+
+input[type="range"] {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.primary-color {
+  color: $primary-color;
+  font-weight: bold;
 }
 
 .error {
   color: $error-color;
+  font-weight: bold;
 }
 
 .error-border {
-  border: 1px $error-color solid;
+  border: 2px $error-color solid;
 }
 
-.card {
-  height: 400px;
-  background-color: $grey-color;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 25px;
+.warning {
+  background-color: $error-color;
 
-  h3 {
-    background-color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    padding: 15px 30px;
-    border-radius: 0 0 25px 25px;
-  }
-
-  > div {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  &:hover {
+    color: $error-color;
   }
 }
 

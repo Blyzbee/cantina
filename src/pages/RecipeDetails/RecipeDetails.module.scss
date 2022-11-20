@@ -1,0 +1,42 @@
+.recipeDetails {
+  @media (min-width: 1440px) {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 10px 30px;
+    margin: 0 10%;
+
+    > h2,
+    p {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
+    > div {
+      grid-column: 2 / -1;
+
+      > div {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.photoContainer {
+  grid-column: 1 / span 1 !important;
+  grid-row: 3 / span 2;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 20px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

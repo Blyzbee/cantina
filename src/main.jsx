@@ -5,12 +5,14 @@ import AddNewRecipe from "./pages/AddNewRecipe/AddNewRecipe";
 import EditRecipe from "./pages/EditRecipe/EditRecipe";
 import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
 import RecipeList from "./pages/RecipeList/RecipeList";
+import NotFound from "./pages/NotFound/NotFound";
 import "./index.scss";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RecipeList />,
+    errorElement: <NotFound />,
   },
   {
     path: "/recette/:id",

@@ -4,68 +4,23 @@ import Header from "../../components/Header/Header";
 import { durationParsing } from "../../utils/Parsing";
 import style from "./AddNewRecipe.module.scss";
 
-import cross from "../../assets/icons/cross.svg";
+import { useNavigate } from "react-router-dom";
+import LevelSelector from "../../components/LevelSelector/LevelSelector";
+import AddIngredients from "../../components/AddRecipeIngredients/AddRecipeIngredients";
+import AddRecipeSteps from "../../components/AddRecipeStep/AddRecipeSteps";
 
 const AddNewRecipe = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [steps, setSteps] = useState([]);
   const [description, setDescription] = useState("");
   const [level, setLevel] = useState("");
-  const [people, setPeople] = useState(0);
+  const [people, setPeople] = useState();
   const [photoURL, setPhotoURL] = useState("");
-  const [cookingTime, setCookingTime] = useState(0);
+  const [preparationTime, setPreparationTime] = useState();
   const [ingredients, setIngredients] = useState([]);
 
-  const [ingredientName, setIngredientName] = useState("");
-  const [ingredientQuantity, setIngredientQuantity] = useState("");
-  const [step, setStep] = useState("");
-
   const [error, setError] = useState("");
-
-  // ADDING AN INGREDIENT
-  const addIngredient = (e) => {
-    e.preventDefault();
-    if (!ingredientName || !ingredientQuantity) {
-      return;
-    }
-
-    let newIngredients = [...ingredients, [ingredientQuantity, ingredientName]];
-    setIngredients(newIngredients);
-    setIngredientName("");
-    setIngredientQuantity("");
-  };
-
-  // REMOVE AN INGREDIENT
-  const removeIngredient = (i) => {
-    let newIngredients = [];
-    ingredients.forEach((ingredient, index) => {
-      if (i !== index) newIngredients.push(ingredient);
-    });
-
-    setIngredients(newIngredients);
-  };
-
-  // ADDING A STEP
-  const addStep = (e) => {
-    e.preventDefault();
-    if (!step) {
-      return;
-    }
-
-    let newSteps = [...steps, step];
-    setSteps(newSteps);
-    setStep("");
-  };
-
-  // REMOVE A STEP
-  const removeStep = (i) => {
-    let newSteps = [];
-    steps.forEach((step, index) => {
-      if (i !== index) newSteps.push(step);
-    });
-
-    setSteps(newSteps);
-  };
 
   // VALIDATE FORM
   const handleForm = (e) => {
@@ -78,12 +33,21 @@ const AddNewRecipe = () => {
       !level ||
       !people ||
       people <= 0 ||
-      !cookingTime ||
-      cookingTime <= 0 ||
+      !preparationTime ||
+      preparationTime <= 0 ||
       !ingredients[0]
     ) {
       setError("Veuillez remplir tous les champs requis");
       return;
+    }
+
+    if (photoURL) {
+      const regexUrl = "((http|https)://)(www.)?";
+
+      if (!photoURL.match(regexUrl)) {
+        setError("Le lien de l'image n'est pas valide");
+        return;
+      }
     }
 
     axios
@@ -91,13 +55,21 @@ const AddNewRecipe = () => {
         titre: title,
         etapes: steps,
         description,
+        photo: photoURL,
         niveau: level,
         personnes: Number(people),
-        tempsPreparation: Number(cookingTime),
+        tempsPreparation: Number(preparationTime),
         ingredients,
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) =>
+        alert(
+          "erreur lors de l'ajout de la recette, veuillez réessayer. code: " +
+            err
+        )
+      );
 
     setError("");
   };
@@ -146,19 +118,7 @@ const AddNewRecipe = () => {
           </div>
           <div>
             <label htmlFor="level">Niveau de difficulté</label>
-            <select
-              name="level"
-              className={error && !level && "error-border"}
-              value={level}
-              onChange={(e) => setLevel(e.target.value)}
-            >
-              <option value="" disabled>
-                Sélectionnez un niveau de difficulté
-              </option>
-              <option value="padawan">Padawan</option>
-              <option value="jedi">Jedi</option>
-              <option value="maitre">Maitre</option>
-            </select>
+            <LevelSelector level={level} setLevel={setLevel} error={error} />
           </div>
           <div>
             <label htmlFor="people">Nombre de personnes</label>
@@ -171,80 +131,31 @@ const AddNewRecipe = () => {
             />
           </div>
           <div>
-            <label htmlFor="cookingTime">Temps de préparation</label>
+            <label htmlFor="preparationTime">Temps de préparation</label>
             <div>
               <input
-                name="cookingTime"
+                name="preparationTime"
                 type="number"
-                className={error && !cookingTime && "error-border"}
-                value={cookingTime}
-                onChange={(e) => setCookingTime(e.target.value)}
+                className={error && !preparationTime && "error-border"}
+                value={preparationTime}
+                onChange={(e) => setPreparationTime(e.target.value)}
               />{" "}
               minutes
-              {cookingTime >= 60 && <i>({durationParsing(cookingTime)})</i>}
+              {preparationTime >= 60 && (
+                <i>({durationParsing(preparationTime)})</i>
+              )}
             </div>
           </div>
-          <div>
-            <label htmlFor="ingredients">Liste des ingrédients</label>
-            {ingredients.map((ingredient, i) => (
-              <div key={i}>
-                {ingredient[0]} {ingredient[1]}{" "}
-                <img
-                  src={cross}
-                  alt="supprimer l'ingrédient"
-                  onClick={() => removeIngredient(i)}
-                />
-              </div>
-            ))}
-            <div>
-              <label htmlFor="ingredientQuantity">Quantité</label>
-              <input
-                name="ingredientQuantity"
-                type="text"
-                className={error && !ingredients[0] && "error-border"}
-                placeholder="300ml"
-                value={ingredientQuantity}
-                onChange={(e) => setIngredientQuantity(e.target.value)}
-              />
-              <label htmlFor="ingredientName">Ingrédient</label>
-              <input
-                name="ingredientName"
-                type="text"
-                className={error && !ingredients[0] && "error-border"}
-                placeholder="de lait"
-                value={ingredientName}
-                onChange={(e) => setIngredientName(e.target.value)}
-              />
-              <button className="button" onClick={(e) => addIngredient(e)}>
-                Ajouter
-              </button>
-            </div>
+          <AddIngredients
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+            error={error}
+          />
+          <AddRecipeSteps steps={steps} setSteps={setSteps} error={error} />
+          <div className={style.submit}>
+            {error && <span className="error">{error}</span>}
+            <button className="button">Ajouter la nouvelle recette</button>
           </div>
-          <div>
-            <label htmlFor="step">Liste des étapes</label>
-            {steps.map((step, i) => (
-              <div key={i}>
-                {step}{" "}
-                <img
-                  src={cross}
-                  alt="supprimer l'étape"
-                  onClick={() => removeStep(i)}
-                />
-              </div>
-            ))}
-            <textarea
-              name="step"
-              className={error && !steps[0] && "error-border"}
-              placeholder="Commencez par préparer le concombre et la menthe. Épluchez le concombre et taillez-le en mirepoix (dés de 1 cm environ). Réservez."
-              value={step}
-              onChange={(e) => setStep(e.target.value)}
-            />
-            <button className="button" onClick={(e) => addStep(e)}>
-              Ajouter
-            </button>
-          </div>
-          {error && <span className="error">{error}</span>}
-          <button className="button">Valider</button>
         </form>
       </div>
     </>

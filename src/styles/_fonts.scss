@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Starjedi";
+  src: url("../assets/fonts/Starjedi.ttf");
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica-Bold.ttf");
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica-Oblique.ttf");
+  font-style: oblique;
+  font-weight: normal;
+}
+
+body {
+  font-family: "Helvetica", sans-serif;
+}

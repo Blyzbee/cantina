@@ -4,21 +4,56 @@
   width: 90%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
-  gap: 20px;
+  gap: 50px 30px;
+}
 
-  > div:first-child {
-    position: relative;
-    cursor: pointer;
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  cursor: pointer;
+  border: 2px $click-color solid;
+  border-radius: 20px;
 
-    > img {
-      background-color: rgba(255, 255, 255, 0.7);
-      border-radius: 25px;
-      border: 2px solid $click-color;
-      position: absolute;
-      width: 100px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+  > img {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    border: 2px solid $click-color;
+    width: 100px;
+    margin-bottom: 40px;
+  }
+}
+
+.filtres {
+  width: 90%;
+  margin: 10px 0 40px 0;
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      margin-right: 30px;
+      margin-bottom: 20px;
+
+      &:nth-child(3) {
+        min-width: min(300px, 100%);
+      }
+
+      &:nth-child(4) {
+        input {
+          width: 40px;
+        }
+        span {
+          width: 100%;
+          text-align: center;
+        }
+      }
     }
   }
 }

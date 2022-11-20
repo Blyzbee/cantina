@@ -3,10 +3,13 @@ import Header from "../../components/Header/Header";
 
 const NotFound = () => {
   return (
-    <div className="main-container">
+    <>
       <Header goback />
-      <h1>Erreur 404</h1>
-    </div>
+      <div className="main-container">
+        <h2>Erreur 404</h2>
+        <span>La page que vous recherchez n'existe pas.</span>
+      </div>
+    </>
   );
 };
 
